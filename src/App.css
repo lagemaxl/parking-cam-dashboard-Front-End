@@ -24,7 +24,7 @@ body {
 }
 
 .line-chart {
-  box-shadow: 10px 10px 0px #8884d8;
+  /*box-shadow: 10px 10px 0px #8884d8; */
   float: right;
   margin: 5em;
 }
