@@ -1,5 +1,6 @@
 import React from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, Tooltip } from 'recharts';
+import ShowBox from './components/ShowBox';
 
 const data = [
   { name: '12:00', aut: 35},
@@ -12,15 +13,17 @@ const data = [
 
 ];
 
+
 const Home = () => {
     return (
       <div className="App">
         <h1>Ahoj</h1>
-        <LineChart width={600} height={300} data={data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+        <ShowBox title="Volná místa:" value={72} />
+        <LineChart width={600} height={300} data={data} className="line-chart">
           <Line type="monotone" dataKey="aut" stroke="#8884d8" strokeWidth={3}/>
           <XAxis dataKey="name" />
           <YAxis />
-          <Tooltip />
+          <Tooltip/>
         </LineChart>
       </div>
     );

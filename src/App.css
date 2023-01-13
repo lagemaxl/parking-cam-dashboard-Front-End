@@ -8,25 +8,77 @@ body {
   position: absolute;
 }
 
-.pocetsmg{
-  border: 3px solid rgba(75,192,192,1);
-  width: 100px;
-  height: 100px;
-  border-radius: 10px;
-  float: left;
-  color: rgba(75,192,192,1);
-}
-
-.Graf {
-  float: right;
-  color: rgba(75,192,192,1);
-  margin: 3em;
-  margin-top: 10em;
-  margin-right: 10em;
-}
-
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.line-chart {
+  box-shadow: 10px 10px 0px #8884d8;
+  float: right;
+  margin: 5em;
+}
+
+nav {
+  background-color: #8884d8;
+  height: 3em;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+}
+
+nav ul li {
+  color: white;
+  font-size: 1.5em;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* unvisited link */
+a:link {
+  color: white;
+}
+
+/* visited link */
+a:visited {
+  color: white;
+}
+
+/* mouse over link */
+a:hover {
+  color: white;
+}
+
+/* selected link */
+a:active {
+  color: white;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  size: 1.5;
+  transition: all 0.5s ease;
+}
+
+a:active {
+  text-decoration: none;
 }
