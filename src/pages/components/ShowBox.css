@@ -1,7 +1,7 @@
 .ShowBox {
-    box-shadow: 5px 5px 0px #8884d8;
+    box-shadow: 10px 10px 0px #8884d8;
     float: left;
-    margin: 5em;
+    margin: 2em;
     width: 10em;
     height: 8em;
     border: #8884d8 solid 3px;
@@ -17,13 +17,14 @@
     font-size: 1em;
     font-weight: bold;
     margin-left: 0.5em;
+    margin-top: 0.5em;
     text-align: left;
-    position: absolute;
   }
 
   .ShowBoxValue {
     font-size: 4.5em;
     transition: 0.1s;
-    margin-top: 0.1em;
+    text-align: center;
+    margin-top: -0.2em;
   }
 

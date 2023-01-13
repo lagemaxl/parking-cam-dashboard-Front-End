@@ -4,21 +4,11 @@ import React from 'react';
 function ShowBox(props) {
 
     //const divelement = document.querySelector('.ShowBox');
-    const titleelement = document.querySelector('.ShowBoxTitle') 
-    const valueelement = document.querySelector('.ShowBoxValue');
-
-    const handleMouseEnter = () => {
-        titleelement.style.display = "none";
-        valueelement.style.fontSize = "5em";
-
-    }
-    const handleMouseLeave = () => {
-        titleelement.style.display = "block";
-        valueelement.style.fontSize = "4.5em";
-    }
+    //const titleelement = document.querySelector('.ShowBoxTitle') 
+    //const valueelement = document.querySelector('.ShowBoxValue');
     return (
     <>
-    <div className= "ShowBox" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <div className= "ShowBox">
         <h3 className="ShowBoxTitle">
             {props.title}
         </h3>

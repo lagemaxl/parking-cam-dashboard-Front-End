@@ -17,8 +17,10 @@ const data = [
 const Home = () => {
     return (
       <div className="App">
-        <h1>Ahoj</h1>
-        <ShowBox title="Volná místa:" value={72} />
+        <h1 className="Title">Parking Dashboard</h1>
+        <ShowBox title="Počet míst:" value={90} />
+        <ShowBox title="Obsazená místa:" value={10} />
+        <ShowBox title="Volná místa:" value={80} />
         <LineChart width={600} height={300} data={data} className="line-chart">
           <Line type="monotone" dataKey="aut" stroke="#8884d8" strokeWidth={3}/>
           <XAxis dataKey="name" />

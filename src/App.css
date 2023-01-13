@@ -14,6 +14,15 @@ body {
   box-sizing: border-box;
 }
 
+.Title {
+  color: #8884d8;
+  margin-top: 2em;
+  text-align: left;
+  margin-left: 1em;
+  width: 20%;
+
+}
+
 .line-chart {
   box-shadow: 10px 10px 0px #8884d8;
   float: right;
