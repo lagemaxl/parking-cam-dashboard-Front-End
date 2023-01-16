@@ -91,3 +91,8 @@ a:hover {
 a:active {
   text-decoration: none;
 }
+
+.map-container {
+  width: 800px;
+  height: 600px;
+}
