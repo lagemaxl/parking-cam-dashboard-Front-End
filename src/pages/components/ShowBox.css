@@ -6,6 +6,7 @@
     height: 8em;
     border: #8884d8 solid 3px;
     color: #8884d8;
+
   }
 
   .ShowBox:hover {
@@ -27,4 +28,48 @@
     text-align: center;
     margin-top: -0.2em;
   }
+
+
+  @media only screen and (max-width: 1000px){
+    .ShowBox {
+      box-shadow: 6px 6px 0px #8884d8;
+      margin-left: 1%;
+      width: 10em;
+      height: 8em;
+  
+    }
+
+  
+}
+
+@media only screen and (max-width: 600px){
+  
+  .ShowBox {
+    box-shadow: 3px 3px 0px #8884d8;
+    margin: 0.5em;
+    width: 6em;
+    height: 5em;
+
+  }
+
+  .ShowBox:hover {
+    background-color: #282c34;
+    color: #8884d8;
+  }
+
+  .ShowBoxTitle {
+    font-size: 10px;
+    margin-left: 0.5em;
+    margin-top: 0.5em;
+  }
+
+  .ShowBoxValue {
+    font-size: 3em;
+    transition: 0.1s;
+    text-align: center;
+    margin-top: -0.2em;
+  }
+
+}
+
 

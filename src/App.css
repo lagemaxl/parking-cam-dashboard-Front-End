@@ -19,14 +19,11 @@ body {
   margin-top: 2em;
   text-align: left;
   margin-left: 1em;
-  width: 20%;
 
 }
 
-.line-chart {
-  /*box-shadow: 10px 10px 0px #8884d8; */
-  float: right;
-  margin: 5em;
+.ShowBoxs-box {
+  width: 100%;
 }
 
 nav {
@@ -92,7 +89,34 @@ a:active {
   text-decoration: none;
 }
 
-.map-container {
-  width: 800px;
-  height: 600px;
-}
+@media only screen and (max-width: 1410px){
+  .Graf {
+    width: 70%;
+    top: 0;
+  }
+
+  .ShowBoxs-box{
+    width: 10%;
+    float: left;
+    margin-left: 1em;
+  }
+} 
+
+@media only screen and (max-width: 1000px){
+
+  .Graf {
+    width: 100%;
+  }
+
+  .ShowBoxs-box{
+    width: 100%;
+  }
+} 
+
+@media only screen and (max-width: 600px){
+  .ShowBoxs-box{
+    width: 100%;
+    margin: 1em;
+    margin-left: 10%;
+  }
+} 
