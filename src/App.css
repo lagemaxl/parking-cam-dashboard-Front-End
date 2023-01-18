@@ -26,6 +26,12 @@ body {
   width: 100%;
 }
 
+.Mapka {
+  width: 50%;
+  height: 10px;
+  position: relative;
+}
+
 nav {
   background-color: #8884d8;
   height: 3em;

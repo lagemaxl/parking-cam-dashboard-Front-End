@@ -1,0 +1,8 @@
+.leaflet-container {
+    width: 80%;
+    height: 50vh;
+    float: left;
+    margin-left: 5%;
+    color-scheme: dark;
+    color: black;
+  }

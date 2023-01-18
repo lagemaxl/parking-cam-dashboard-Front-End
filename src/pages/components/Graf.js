@@ -22,11 +22,6 @@ function Graf() {
       
       ];
 
-
-    
-
-
-
     return (
       <ResponsiveContainer width={"100%"} height={sirka} className="Graf">
         <LineChart data={data}>

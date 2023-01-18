@@ -1,10 +1,7 @@
 import React from 'react';
-//import { LineChart, Line, XAxis, YAxis, Tooltip, } from 'recharts';
-//import { ResponsiveContainer } from 'recharts';
 import ShowBox from './components/ShowBox';
 import Graf from './components/Graf';
-//import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-
+import Mapka from "./components/Mapka";
 
 
 
@@ -12,6 +9,7 @@ import Graf from './components/Graf';
 
 
 const Home = () => {
+  //const position = [50.0880, 14.4208]; // pozice Národního divadla v Praze
 
     return (
       <div className="App">
@@ -23,6 +21,9 @@ const Home = () => {
         </div>
         <div className="Graf">  
           <Graf />
+        </div>
+        <div className="Mapka">
+        <Mapka />
         </div>
       </div>
     );
