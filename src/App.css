@@ -106,6 +106,13 @@ a:active {
     float: left;
     margin-left: 1em;
   }
+
+  .Mapka {
+    width: 100%;
+    position: absolute;
+    top: 80%;
+    display: block;
+  }
 } 
 
 @media only screen and (max-width: 1000px){
