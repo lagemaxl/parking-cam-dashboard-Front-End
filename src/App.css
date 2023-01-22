@@ -95,6 +95,15 @@ a:active {
   text-decoration: none;
 }
 
+.btnGraf {
+  background-color: #8884d8;
+  color: white;
+  border: none;
+  width: 10em;
+  margin: 0.5em;
+  height: 2em;
+}
+
 @media only screen and (max-width: 1410px){
   .Graf {
     width: 70%;
@@ -123,6 +132,13 @@ a:active {
 
   .ShowBoxs-box{
     width: 100%;
+  }
+
+  .Mapka {
+    width: 100%;
+    position: absolute;
+    top: 95%;
+    display: block;
   }
 } 
 
