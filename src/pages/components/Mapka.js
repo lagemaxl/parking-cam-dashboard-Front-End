@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapContainer, Marker, TileLayer } from 'react-leaflet';
+import { MapContainer, Marker, TileLayer, Popup } from 'react-leaflet';
 import './MapObject.css'
 //import 'leaflet/dist/leaflet.css'; // import leaflet css
 
@@ -13,7 +13,9 @@ const Mapka = () => {
           attribution= '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
           //attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
-        <Marker position={center} />
+        <Marker position={center}>
+        <Popup>Parkoviště</Popup>
+        </Marker>.
     </MapContainer>
   );
 }
