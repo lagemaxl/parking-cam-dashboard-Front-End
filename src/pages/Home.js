@@ -1,16 +1,12 @@
+import { Container } from '@mui/system';
 import React, { useState, useEffect } from 'react';
-import ClipLoader from "react-spinners/ClipLoader";
+import FadeLoader from "react-spinners/FadeLoader";
+import './App.css';
 
-const spinner = {
-  display: "block",
-  margin: "0 auto",
-  borderColor: "red",
-};
 
 
 function App() {
     let [loading, setLoading] = useState(true);
-    let [color] = useState("#ffffff");
 
   const [parkingData, setParkingData] = useState([]);
 
@@ -25,14 +21,8 @@ function App() {
   }, []);
 
   return (<>
-  {loading ?       <ClipLoader
-        color={color}
-        loading={loading}
-        cssOverride={spinner}
-        size={150}
-        aria-label="Loading Spinner"
-        data-testid="loader"
-      /> : 
+  <Container maxWidth="xl">
+  {loading ? <div className="loading"><FadeLoader color="#36d7b7"/><div/> </div>: 
     <div>
       <h1>Parking Data</h1>
       <ul>
@@ -45,6 +35,7 @@ function App() {
       </ul>
     </div>
     }
+    </Container>
     </>
   );
 }

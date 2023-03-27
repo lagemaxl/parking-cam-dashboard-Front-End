@@ -1,0 +1,16 @@
+body {
+  background-color: #182136;
+  margin: 0;
+  padding: 0; 
+  min-width: 300px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+}
+
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
