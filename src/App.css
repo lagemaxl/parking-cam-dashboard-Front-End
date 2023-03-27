@@ -1,158 +1,38 @@
-body {
+.App {
   text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
   background-color: #282c34;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  position: absolute;
-}
-
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.Title {
-  color: #8884d8;
-  margin-top: 2em;
-  text-align: left;
-  margin-left: 1em;
-
-}
-
-.ShowBoxs-box {
-  width: 100%;
-}
-
-.Mapka {
-  width: 50%;
-  height: 10px;
-  position: relative;
-}
-
-nav {
-  background-color: #8884d8;
-  height: 3em;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
-nav ul {
-  list-style: none;
+  min-height: 100vh;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
   align-items: center;
-  height: 100%;
-}
-
-nav ul li {
-  color: white;
-  font-size: 1.5em;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-/* unvisited link */
-a:link {
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
   color: white;
 }
 
-/* visited link */
-a:visited {
-  color: white;
+.App-link {
+  color: #61dafb;
 }
 
-/* mouse over link */
-a:hover {
-  color: white;
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
-
-/* selected link */
-a:active {
-  color: white;
-}
-
-a:link {
-  text-decoration: none;
-}
-
-a:visited {
-  text-decoration: none;
-}
-
-a:hover {
-  size: 1.5;
-  transition: all 0.5s ease;
-}
-
-a:active {
-  text-decoration: none;
-}
-
-.btnGraf {
-  background-color: #8884d8;
-  color: white;
-  border: none;
-  width: 10em;
-  margin: 0.5em;
-  height: 2em;
-}
-
-@media only screen and (max-width: 1410px){
-  .Graf {
-    width: 70%;
-    top: 0;
-  }
-
-  .ShowBoxs-box{
-    width: 10%;
-    float: left;
-    margin-left: 1em;
-  }
-
-  .Mapka {
-    width: 100%;
-    position: absolute;
-    top: 80%;
-    display: block;
-  }
-} 
-
-@media only screen and (max-width: 1000px){
-
-  .Graf {
-    width: 100%;
-  }
-
-  .ShowBoxs-box{
-    width: 100%;
-  }
-
-  .Mapka {
-    width: 100%;
-    position: absolute;
-    top: 95%;
-    display: block;
-  }
-} 
-
-@media only screen and (max-width: 600px){
-  .ShowBoxs-box{
-    width: 100%;
-    margin: 1em;
-    margin-left: 10%;
-  }
-
-  .Mapka {
-    width: 100%;
-    position: absolute;
-    top: 100%;
-    display: block;
-  }
-} 
