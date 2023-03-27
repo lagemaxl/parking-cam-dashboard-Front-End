@@ -4,7 +4,6 @@ import FadeLoader from "react-spinners/FadeLoader";
 import './App.css';
 
 
-
 function App() {
     let [loading, setLoading] = useState(true);
 
