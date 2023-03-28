@@ -5,13 +5,13 @@ import './App.css';
 
 
 function App() {
-    let [loading, setLoading] = useState(true);
+  let [loading, setLoading] = useState(true);
 
   const [parkingData, setParkingData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('https://parkingapi.node.cloud.bagros.eu/getdata/usti_pennyrondel/?timerange=1mo&window=1m');
+      const response = await fetch('https://parkingapi.node.cloud.bagros.eu/getdata/usti_pennyrondel/?timerange=1mo&window=1h');
       const data = await response.json();
       setParkingData(data.data);
       setLoading(false);
@@ -21,7 +21,7 @@ function App() {
 
   return (<>
   <Container maxWidth="xl">
-  {loading ? <div className="loading"><FadeLoader color="#36d7b7"/><div/> </div>: 
+  {loading ? <div className="loading"><FadeLoader color="#36d7b7"/></div>: 
     <div>
       <h1>Parking Data</h1>
       <ul>
