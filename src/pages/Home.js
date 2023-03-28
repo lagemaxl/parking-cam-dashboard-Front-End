@@ -24,13 +24,14 @@ function CarCount(props)  {
 
   return (
     <>
-    <PieChart width={170} height={170}>
+    <PieChart width={300} height={300}>
       <Pie
         data={data}
-        cx={80}
-        cy={80}
-        innerRadius={60}
-        outerRadius={80}
+        cx={150}
+        cy={150}
+        innerRadius={100}
+        outerRadius={130}
+        fill="#8884d8"
         paddingAngle={5}
         dataKey="value"
         startAngle={90}
@@ -39,17 +40,24 @@ function CarCount(props)  {
         {data.map((entry, index) => (
           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
         ))}
+    <Label
+    value={`Obsazeno`}
+    position="center"
+    dy={-50}
+    dx={-10}
+    style={{ fontSize: 20, fill: '#ffffff'}}
+  />
   <Label
     value={`${value}`}ffffff
     position="center"
-    style={{ fontSize: 50, fill: '#ffffff' }}
+    style={{ fontSize: 80, fill: '#ffffff' }}
   />
   <Label
-    value={`/90`}
+    value={`z 90`}
     position="center"
-    dy={30}
-    dx={0}
-    style={{ fontSize: 15, fill: '#ffffff'}}
+    dy={50}
+    dx={10}
+    style={{ fontSize: 20, fill: '#ffffff'}}
   />
       </Pie>
     </PieChart>
@@ -68,14 +76,16 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://parkingapi.node.cloud.bagros.eu/getdata/usti_pennyrondel/?timerange=10m&window=1m'); //aktuální počet aut na parkovišti
+        const responseNOW = await fetch('https://parkingapi.node.cloud.bagros.eu/getdata/usti_pennyrondel/?timerange=1m&window=1m'); //aktuální počet aut na parkovišti
+        const response = await fetch('https://parkingapi.node.cloud.bagros.eu/getdata/usti_pennyrondel/?timerange=5h&window=30m'); 
         const data = await response.json();
+        const dataNOW = await responseNOW.json();
         const mappedData = data.data.map(item => ({
-          name: item.time.substring(11, 16),
+          name: parseInt(item.time.substring(11, 13)) + 2 + ":" + item.time.substring(14, 16),
           aut: item.full,
         }));
         setDataG(mappedData);
-        setParkingData(data.data);
+        setParkingData(dataNOW.data);
         setLoading(false);
       } catch (error) {
         console.error(error);
@@ -89,20 +99,37 @@ function App() {
   return (<>
   <Container maxWidth="xl">
   {loading ? <div className="loading"><FadeLoader color="#36d7b7"/></div>: 
-    <div>
-      <h1>Parking Data</h1>
-      <CarCount count={parkingData[0].full} />
-      <ResponsiveContainer width={"100%"} height={vyska} className="Graf">
-      <LineChart data={dataG}>
-        <Line type="monotone" dataKey="aut" stroke="#27beff" strokeWidth={3}/>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-       <YAxis />
-        <YAxis />
-        <Tooltip/>
-      </LineChart>
-    </ResponsiveContainer>
+    <div className="Container">
+      <div className="LeftContainer">
+        <h1>Usti nad Labem - Penny Rondel</h1>	
+        <CarCount count={parkingData[0].full}/>
+        <div className="infoDiv">
+          <h2>Informace o parkovišti</h2>
+          <p>Adresa: <a href="https://goo.gl/maps/8Z8Z9Z8Z9Z8Z9Z8Z9">Penny Rondel, Usti nad Labem</a></p>
+          <p>Obsazenost: {parkingData[0].full} z 90</p>
+          <p>Poslední aktualizace: {parkingData[0].time}</p>
+        </div>
 
+
+      
+
+
+     </div>
+
+      <div className="RightContainer">
+        <h1>Statisky za posledních 5 hodin</h1>
+        <ResponsiveContainer width={"100%"} height={vyska}>
+          <LineChart data={dataG}>
+          <Line type="monotone" dataKey="aut" stroke="#27beff" strokeWidth={3}/>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" />
+          <YAxis 
+            domain={[41, 46]}
+          />
+          <Tooltip contentStyle={{backgroundColor: "black"}} itemStyle={{ color: "white" }} />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
     </div>
     }
     </Container>
@@ -111,6 +138,7 @@ function App() {
 }
 
 export default App;
+
 /*
 <ul>
 {parkingData.map((item, index) => (

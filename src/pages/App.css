@@ -20,3 +20,29 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.Container {
+  width: 100%;
+}
+
+.LeftContainer {
+  width: 50%;
+  float: left;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.RightContainer {
+  width: 50%;
+  float: right;
+}
+
+.infoDiv {
+  margin: 1em;
+  padding: 1em;
+  border: 1px solid #282c34;
+  border-radius: 5px;
+  background-color: #27beffcf;
+
+}
