@@ -223,7 +223,7 @@ function App() {
           </LineChart>
         </ResponsiveContainer>
 
-        <button onClick={Show5H}>Za 5 hodin ahoj</button>
+        <button onClick={Show5H}>Za 5 hodin</button>
 
         <button onClick={Show1D}>Za den</button>
 
