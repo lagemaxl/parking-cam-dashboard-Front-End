@@ -23,6 +23,7 @@ body {
 
 .Container {
   width: 100%;
+  padding: 1em;
 }
 
 .LeftContainer {
@@ -44,5 +45,52 @@ body {
   border: 1px solid #282c34;
   border-radius: 5px;
   background-color: #27beffcf;
+  border: #282c34 1px solid;
+  box-shadow: 0 5px 10px rgba(0, 0, 0);
+}
 
+
+
+
+
+
+
+
+
+
+
+nav {
+  background-color: #27beffcf;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  margin: 0 1rem;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #ddd;
+}
+
+nav a.active {
+  color: #ddd;
+  border-bottom: 2px solid #ddd;
 }

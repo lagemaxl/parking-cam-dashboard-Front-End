@@ -98,7 +98,7 @@ function App() {
 
   return (<>
   <Container maxWidth="xl">
-  {loading ? <div className="loading"><FadeLoader color="#36d7b7"/></div>: 
+  {loading ? <div className="loading"><FadeLoader color="#27beffcf"/></div>: 
     <div className="Container">
       <div className="LeftContainer">
         <h1>Usti nad Labem - Penny Rondel</h1>	
@@ -118,13 +118,13 @@ function App() {
 
       <div className="RightContainer">
         <h1>Statisky za posledních 5 hodin</h1>
-        <ResponsiveContainer width={"100%"} height={vyska}>
+        <ResponsiveContainer width={"100%"} height={vyska} className="Graf">
           <LineChart data={dataG}>
           <Line type="monotone" dataKey="aut" stroke="#27beff" strokeWidth={3}/>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
           <YAxis 
-            domain={[41, 46]}
+            domain={[41, 47]}
           />
           <Tooltip contentStyle={{backgroundColor: "black"}} itemStyle={{ color: "white" }} />
           </LineChart>
