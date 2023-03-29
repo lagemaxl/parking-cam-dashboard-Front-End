@@ -5,11 +5,36 @@ import './App.css';
 import { PieChart, Pie, Cell, Label } from 'recharts';
 import { LineChart, Line, XAxis, YAxis, Tooltip, } from 'recharts';
 import { ResponsiveContainer, CartesianGrid } from 'recharts';
+import { MapContainer, Marker, TileLayer, Popup } from 'react-leaflet';
 
 let vyska;
 vyska = 500;
 if (window.innerWidth < 600) 
 vyska = 300;
+
+const mapa = {
+  height: '50vh',
+  width: '100%',
+}
+
+
+const Mapka = () => {
+
+  const [center] = useState([50.6813617, 14.0078506]); // Pozoce parkoviště v UL
+  return (
+    <MapContainer center={center} zoom={15} style={mapa}>
+        <TileLayer
+          //url = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+          url='https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png'
+          attribution= '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+          styles="mapbox://styles/mapbox/dark-v10"
+        />
+        <Marker position={center}>
+        <Popup>Parkoviště</Popup>
+        </Marker>.
+    </MapContainer>
+  );
+}
 
 
 
@@ -106,8 +131,10 @@ function App() {
         <div className="infoDiv">
           <h2>Informace o parkovišti</h2>
           <p>Obsazenost: {parkingData[0].full} z 90</p>
-          <p>Poslední aktualizace: {parkingData[0].time}</p>
+          <p>Poslední aktualizace: {parseInt(parkingData[0].time.substring(8, 10)) + "." + parseInt(parkingData[0].time.substring(6, 8)) + " " + (parseInt(parkingData[0].time.substring(11, 13)) + 2 )+ ":" + parseInt(parkingData[0].time.substring(14, 16))}</p>
         </div>
+
+        <Mapka/>
 
      </div>
 
