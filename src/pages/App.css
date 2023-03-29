@@ -39,6 +39,29 @@ body {
   float: right;
 }
 
+.RightContainer h1 {
+  margin: 0;
+  padding: 0;
+  font-size: 2em;
+  font-weight: bold;
+  color: #27beffcf;
+}
+
+.RightContainer button {
+  margin-top: 1em;
+  padding: 1em;
+  border: none;
+  border-radius: 5px;
+  background-color: #27beffcf;
+  border: #282c34 1px solid;
+  box-shadow: 0 2px 5px rgba(0, 0, 0);
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #282c34;
+  cursor: pointer;
+  margin: 0.5em;
+}
+
 .infoDiv {
   margin: 1em;
   padding: 1em;
@@ -46,20 +69,30 @@ body {
   border-radius: 5px;
   background-color: #27beffcf;
   border: #282c34 1px solid;
-  box-shadow: 0 5px 10px rgba(0, 0, 0);
+  box-shadow: 0 2px 5px rgba(0, 0, 0);
+  text-align: center;
 }
 
 .infoDiv h2 {
   margin: 0;
   padding: 0;
-  font-size: 1.5em;
+  margin-bottom: 1em;
+  font-size: 2em;
   font-weight: bold;
 }
 
 .infoDiv p {
   margin: 0;
   padding: 0;
-  font-size: 1em;
+  font-size: 1.5em;
+}
+
+.map-container{
+  margin-top: 2em;
+  height: 500px;
+  width: 100%;
+  border: #282c34 1px solid;
+  box-shadow: 0 2px 5px rgba(0, 0, 0);
 }
 
 

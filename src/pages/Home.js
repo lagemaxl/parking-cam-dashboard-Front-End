@@ -15,17 +15,12 @@ vyska = 500;
 if (window.innerWidth < 600) 
 vyska = 300;
 
-const mapa = {
-  height: '50vh',
-  width: '100%',
-}
-
 // React Leaflet Mapka zobrazující místo kde se nachází parkoviště
 const Mapka = () => {
 
   const [center] = useState([50.6813617, 14.0078506]); // Pozoce parkoviště v UL
   return (
-    <MapContainer center={center} zoom={15} style={mapa}>
+    <MapContainer center={center} zoom={15} className="map-container">
         <TileLayer
           //url = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
           url='https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png'
@@ -125,6 +120,66 @@ function App() {
     fetchData();
   }, []);
 
+  function Show5H(){
+    setLoading(true);
+    const response = fetch('https://parkingapi.node.cloud.bagros.eu/getdata/usti_pennyrondel/?timerange=5h&window=30m');
+    response.then(res => res.json()).then(data => {
+      const mappedData = data.data.map(item => ({
+        name: parseInt(item.time.substring(11, 13)) + 2 + ":" + item.time.substring(14, 16),
+        aut: item.full,
+      }));
+      max = Math.max(...mappedData.map(item => item.aut));
+      min = Math.min(...mappedData.map(item => item.aut));
+      setDataG(mappedData);
+      setLoading(false);
+    });
+  }
+
+  function Show1D(){
+    setLoading(true);
+    const response = fetch('https://parkingapi.node.cloud.bagros.eu/getdata/usti_pennyrondel/?timerange=1d&window=2h');
+    response.then(res => res.json()).then(data => {
+      const mappedData = data.data.map(item => ({
+        name: parseInt(item.time.substring(11, 13)) + 2 + ":" + item.time.substring(14, 16),
+        aut: item.full,
+      }));
+      max = Math.max(...mappedData.map(item => item.aut));
+      min = Math.min(...mappedData.map(item => item.aut));
+      setDataG(mappedData);
+      setLoading(false);
+    });
+  }
+
+  function Show1W(){ 
+    setLoading(true);
+    const response = fetch('https://parkingapi.node.cloud.bagros.eu/getdata/usti_pennyrondel/?timerange=1w&window=1d');
+    response.then(res => res.json()).then(data => {
+      const mappedData = data.data.map(item => ({
+        name: parseInt(item.time.substring(8, 10)) + "." + item.time.substring(5, 7),
+        aut: item.full,
+      }));
+      max = Math.max(...mappedData.map(item => item.aut));
+      min = Math.min(...mappedData.map(item => item.aut));
+      setDataG(mappedData);
+      setLoading(false);
+    });
+  }
+
+  function Show1M(){
+    setLoading(true);
+    const response = fetch('https://parkingapi.node.cloud.bagros.eu/getdata/usti_pennyrondel/?timerange=1m&window=1d');
+    response.then(res => res.json()).then(data => {
+      const mappedData = data.data.map(item => ({
+        name: parseInt(item.time.substring(8, 10)) + "." + item.time.substring(5, 7),
+        aut: item.full,
+      }));
+      max = Math.max(...mappedData.map(item => item.aut));
+      min = Math.min(...mappedData.map(item => item.aut));
+      setDataG(mappedData);
+      setLoading(false);
+    });
+  }
+
 
   return (<>
   <Container maxWidth="xl">
@@ -135,8 +190,10 @@ function App() {
         <CarCount count={parkingData[0].full}/>
         <div className="infoDiv">
           <h2>Informace o parkovišti</h2>
-          <p>Obsazenost: {parkingData[0].full} z 90</p>
-          <p>Poslední aktualizace: {parseInt(parkingData[0].time.substring(8, 10)) + "." + parseInt(parkingData[0].time.substring(6, 8)) + " " + (parseInt(parkingData[0].time.substring(11, 13)) + 2 )+ ":" + parseInt(parkingData[0].time.substring(14, 16))}</p>
+          <p>Plná místa: {parkingData[0].full}</p> <br/>
+          <p>Volná místa: {90 - parseInt(parkingData[0].full)}</p>	<br/>
+          <p>Obsazenost: {Math.round(parkingData[0].full / 90 * 100)}%</p><br/>
+          <p>Poslední aktualizace: {(parseInt(parkingData[0].time.substring(11, 13)) + 2 )+ ":" + parseInt(parkingData[0].time.substring(14, 16))}</p>
         </div>
 
         <Mapka/>
@@ -156,6 +213,14 @@ function App() {
           <Tooltip contentStyle={{backgroundColor: "black"}} itemStyle={{ color: "white" }} />
           </LineChart>
         </ResponsiveContainer>
+
+        <button onClick={Show5H}>Za 5 hodin</button>
+
+        <button onClick={Show1D}>Za den</button>
+
+        <button onClick={Show1W}>Za týden</button>
+
+        <button onClick={Show1M}>Za měsíc</button>
       </div>
     </div>
     }
