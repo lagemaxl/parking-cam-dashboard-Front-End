@@ -49,6 +49,19 @@ body {
   box-shadow: 0 5px 10px rgba(0, 0, 0);
 }
 
+.infoDiv h2 {
+  margin: 0;
+  padding: 0;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.infoDiv p {
+  margin: 0;
+  padding: 0;
+  font-size: 1em;
+}
+
 
 
 

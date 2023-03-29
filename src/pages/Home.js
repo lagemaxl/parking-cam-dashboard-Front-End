@@ -101,18 +101,13 @@ function App() {
   {loading ? <div className="loading"><FadeLoader color="#27beffcf"/></div>: 
     <div className="Container">
       <div className="LeftContainer">
-        <h1>Usti nad Labem - Penny Rondel</h1>	
+        <h1>Ústí nad Labem - Penny Rondel Parkoviště</h1>	
         <CarCount count={parkingData[0].full}/>
         <div className="infoDiv">
           <h2>Informace o parkovišti</h2>
-          <p>Adresa: <a href="https://goo.gl/maps/8Z8Z9Z8Z9Z8Z9Z8Z9">Penny Rondel, Usti nad Labem</a></p>
           <p>Obsazenost: {parkingData[0].full} z 90</p>
           <p>Poslední aktualizace: {parkingData[0].time}</p>
         </div>
-
-
-      
-
 
      </div>
 
