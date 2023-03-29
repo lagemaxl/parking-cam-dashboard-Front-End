@@ -7,6 +7,9 @@ import { LineChart, Line, XAxis, YAxis, Tooltip, } from 'recharts';
 import { ResponsiveContainer, CartesianGrid } from 'recharts';
 import { MapContainer, Marker, TileLayer, Popup } from 'react-leaflet';
 
+let max = 90; //maximální počet aut z  nastaveného intervalu na parkovišti
+let min = 0; //minimální počet aut z  nastaveného intervalu na parkovišti
+
 let vyska;
 vyska = 500;
 if (window.innerWidth < 600) 
@@ -17,7 +20,7 @@ const mapa = {
   width: '100%',
 }
 
-
+// React Leaflet Mapka zobrazující místo kde se nachází parkoviště
 const Mapka = () => {
 
   const [center] = useState([50.6813617, 14.0078506]); // Pozoce parkoviště v UL
@@ -37,10 +40,10 @@ const Mapka = () => {
 }
 
 
-
+// Graf zobrazující historii obsazenosti parkoviště v daném intervalu
 function CarCount(props)  {
   const [value] = useState(props.count);
-  //setVal ue(props.count);
+
   const data = [
       { name: 'Group A', value: value },
       { name: 'Group B', value: 90-value },
@@ -90,35 +93,37 @@ function CarCount(props)  {
   );
 };
 
+//Aplikace
 function App() {
   const [dataG, setDataG] = useState([
-  ]);
+  ]); //data pro graf
 
-  let [loading, setLoading] = useState(true);
+  let [loading, setLoading] = useState(true); //nastavení že se při načítání stránky zobrazí loading
 
-  const [parkingData, setParkingData] = useState([]);
+  const [parkingData, setParkingData] = useState([]); //data pro aktuální počet aut na parkovišti
 
-  useEffect(() => {
+  useEffect(() => { //načtení dat z API
     const fetchData = async () => {
       try {
         const responseNOW = await fetch('https://parkingapi.node.cloud.bagros.eu/getdata/usti_pennyrondel/?timerange=1m&window=1m'); //aktuální počet aut na parkovišti
-        const response = await fetch('https://parkingapi.node.cloud.bagros.eu/getdata/usti_pennyrondel/?timerange=5h&window=30m'); 
+        const response = await fetch('https://parkingapi.node.cloud.bagros.eu/getdata/usti_pennyrondel/?timerange=5h&window=30m'); //za posledních 5 hodin po 30 min
         const data = await response.json();
         const dataNOW = await responseNOW.json();
-        const mappedData = data.data.map(item => ({
+        const mappedData = data.data.map(item => ({ //mapování dat pro graf ve správném formátu
           name: parseInt(item.time.substring(11, 13)) + 2 + ":" + item.time.substring(14, 16),
           aut: item.full,
         }));
-        setDataG(mappedData);
-        setParkingData(dataNOW.data);
-        setLoading(false);
+        max = Math.max(...mappedData.map(item => item.aut)); //nastavení maximálního a minimálního počtu aut na parkovišti
+        min = Math.min(...mappedData.map(item => item.aut));
+        setDataG(mappedData); //nastavení dat pro graf
+        setParkingData(dataNOW.data); //nastavení dat pro aktuální počet aut na parkovišti
+        setLoading(false); //poté co proběhne API request se nastaví loading na false
       } catch (error) {
         console.error(error);
       }
     }
     fetchData();
   }, []);
-
 
 
   return (<>
@@ -146,7 +151,7 @@ function App() {
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
           <YAxis 
-            domain={[41, 47]}
+            domain={[min -1, max + 1]}
           />
           <Tooltip contentStyle={{backgroundColor: "black"}} itemStyle={{ color: "white" }} />
           </LineChart>
@@ -160,15 +165,3 @@ function App() {
 }
 
 export default App;
-
-/*
-<ul>
-{parkingData.map((item, index) => (
-  <li key={index}>
-    <p>Time: {item.time}</p>
-    <p>Full: {item.full}</p>
-  </li>
-))}
-</ul>
-
-*/
