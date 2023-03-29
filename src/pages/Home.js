@@ -10,9 +10,11 @@ import { MapContainer, Marker, TileLayer, Popup } from 'react-leaflet';
 let max = 90; //maximální počet aut z  nastaveného intervalu na parkovišti
 let min = 0; //minimální počet aut z  nastaveného intervalu na parkovišti
 
+let statText = "Statisky za posledních 5 hodin"; //text zobrazený nad grafem
+
 let vyska;
 vyska = 500;
-if (window.innerWidth < 600) 
+if (window.innerWidth < 800) 
 vyska = 300;
 
 // React Leaflet Mapka zobrazující místo kde se nachází parkoviště
@@ -121,6 +123,7 @@ function App() {
   }, []);
 
   function Show5H(){
+    statText = "Statisky za posledních 5 hodin";
     setLoading(true);
     const response = fetch('https://parkingapi.node.cloud.bagros.eu/getdata/usti_pennyrondel/?timerange=5h&window=30m');
     response.then(res => res.json()).then(data => {
@@ -136,6 +139,7 @@ function App() {
   }
 
   function Show1D(){
+    statText = "Statisky za posledních 24 hodin";
     setLoading(true);
     const response = fetch('https://parkingapi.node.cloud.bagros.eu/getdata/usti_pennyrondel/?timerange=1d&window=2h');
     response.then(res => res.json()).then(data => {
@@ -151,6 +155,7 @@ function App() {
   }
 
   function Show1W(){ 
+    statText = "Statisky za posledních 7 dní";
     setLoading(true);
     const response = fetch('https://parkingapi.node.cloud.bagros.eu/getdata/usti_pennyrondel/?timerange=1w&window=1d');
     response.then(res => res.json()).then(data => {
@@ -166,6 +171,7 @@ function App() {
   }
 
   function Show1M(){
+    statText = "Statisky za posledních 30 dní";
     setLoading(true);
     const response = fetch('https://parkingapi.node.cloud.bagros.eu/getdata/usti_pennyrondel/?timerange=1m&window=1d');
     response.then(res => res.json()).then(data => {
@@ -180,20 +186,23 @@ function App() {
     });
   }
 
-
   return (<>
   <Container maxWidth="xl">
   {loading ? <div className="loading"><FadeLoader color="#27beffcf"/></div>: 
     <div className="Container">
       <div className="LeftContainer">
-        <h1>Ústí nad Labem - Penny Rondel Parkoviště</h1>	
-        <CarCount count={parkingData[0].full}/>
-        <div className="infoDiv">
-          <h2>Informace o parkovišti</h2>
-          <p>Plná místa: {parkingData[0].full}</p> <br/>
-          <p>Volná místa: {90 - parseInt(parkingData[0].full)}</p>	<br/>
-          <p>Obsazenost: {Math.round(parkingData[0].full / 90 * 100)}%</p><br/>
-          <p>Poslední aktualizace: {(parseInt(parkingData[0].time.substring(11, 13)) + 2 )+ ":" + parseInt(parkingData[0].time.substring(14, 16))}</p>
+        <h1>Ústí nad Labem - Penny Rondel</h1>	
+        <div className="TopContainer">
+          <div className="CarCount">
+          <CarCount count={parkingData[0].full}/>
+          </div>
+          <div className="infoDiv">
+            <h2>Informace o parkovišti</h2>
+            <p>Plná místa: {parkingData[0].full}</p> <br/>
+            <p>Volná místa: {90 - parseInt(parkingData[0].full)}</p>	<br/>
+            <p>Obsazenost: {Math.round(parkingData[0].full / 90 * 100)}%</p><br/>
+            <p>Poslední aktualizace: {(parseInt(parkingData[0].time.substring(11, 13)) + 2 )+ ":" + parseInt(parkingData[0].time.substring(14, 16))}</p>
+          </div>
         </div>
 
         <Mapka/>
@@ -201,7 +210,7 @@ function App() {
      </div>
 
       <div className="RightContainer">
-        <h1>Statisky za posledních 5 hodin</h1>
+        <h1>{statText}</h1>
         <ResponsiveContainer width={"100%"} height={vyska} className="Graf">
           <LineChart data={dataG}>
           <Line type="monotone" dataKey="aut" stroke="#27beff" strokeWidth={3}/>

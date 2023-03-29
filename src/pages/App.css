@@ -24,6 +24,9 @@ body {
 .Container {
   width: 100%;
   padding: 1em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .LeftContainer {
@@ -32,6 +35,15 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+}
+
+.LeftContainer h1 {
+  width: 100%;
+  margin-bottom: 2em;
+  padding: 0;
+  height: 0;
+  font-size: 2em;
+  font-weight: bold;
 }
 
 .RightContainer {
@@ -50,7 +62,6 @@ body {
 .RightContainer button {
   margin-top: 1em;
   padding: 1em;
-  border: none;
   border-radius: 5px;
   background-color: #27beffcf;
   border: #282c34 1px solid;
@@ -63,6 +74,7 @@ body {
 }
 
 .infoDiv {
+  width: 50%;
   margin: 1em;
   padding: 1em;
   border: 1px solid #282c34;
@@ -95,7 +107,93 @@ body {
   box-shadow: 0 2px 5px rgba(0, 0, 0);
 }
 
+.TopContainer{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
 
+@media only screen and (max-width: 1500px){
+  .infoDiv {
+    width: 60%;
+    margin: 1em;
+  }
+
+  .CarCount{
+    width: 30%;
+    margin-right: 3em;
+  }
+
+  .LeftContainer {
+    width: 100%;
+    float: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .RightContainer {
+    width: 100%;
+    float: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .map-container{
+    margin: 2em;
+    height: 500px;
+    width: 100%;
+    border: #282c34 1px solid;
+    box-shadow: 0 2px 5px rgba(0, 0, 0);
+  }
+
+}
+
+@media only screen and (max-width: 900px){
+  .infoDiv {
+    width: 100%;
+  }
+
+  .LeftContainer {
+    width: 100%;
+  }
+
+  .LeftContainer h1 {
+    margin-bottom: 2em;
+  }
+
+  .RightContainer {
+    width: 100%;
+  }
+
+  .Graf{
+    margin-left: -5em;
+  }
+
+  .CarCount{
+    margin-right: 0;
+    width: auto;
+  }
+}
+
+@media only screen and (max-width: 300px){
+  .LeftContainer h1 {
+    margin-bottom: 3em;
+  }
+
+  .RightContainer button {
+    width: 100%;
+  }
+
+}
 
 
 
