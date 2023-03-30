@@ -97,6 +97,8 @@ function App() {
 
   let [loading, setLoading] = useState(true); //nastavení že se při načítání stránky zobrazí loading
 
+  let [miniLoading, setMiniLoading] = useState(false); //nastavení že se při načítání grafu zobrazí loading
+
   const [parkingData, setParkingData] = useState([]); //data pro aktuální počet aut na parkovišti
 
   useEffect(() => { //načtení dat z API
@@ -124,7 +126,7 @@ function App() {
 
   function Show5H(){
     statText = "Statisky za posledních 5 hodin";
-    setLoading(true);
+    setMiniLoading(true);
     const response = fetch('https://parkingapi.node.cloud.bagros.eu/getdata/usti_pennyrondel/?timerange=5h&window=30m');
     response.then(res => res.json()).then(data => {
       const mappedData = data.data.map(item => ({
@@ -134,13 +136,13 @@ function App() {
       max = Math.max(...mappedData.map(item => item.aut));
       min = Math.min(...mappedData.map(item => item.aut));
       setDataG(mappedData);
-      setLoading(false);
+      setMiniLoading(false);
     });
   }
 
   function Show1D(){
     statText = "Statisky za posledních 24 hodin";
-    setLoading(true);
+    setMiniLoading(true);
     const response = fetch('https://parkingapi.node.cloud.bagros.eu/getdata/usti_pennyrondel/?timerange=1d&window=2h');
     response.then(res => res.json()).then(data => {
       const mappedData = data.data.map(item => ({
@@ -150,13 +152,13 @@ function App() {
       max = Math.max(...mappedData.map(item => item.aut));
       min = Math.min(...mappedData.map(item => item.aut));
       setDataG(mappedData);
-      setLoading(false);
+      setMiniLoading(false);
     });
   }
 
   function Show1W(){ 
     statText = "Statisky za posledních 7 dní";
-    setLoading(true);
+    setMiniLoading(true);
     const response = fetch('https://parkingapi.node.cloud.bagros.eu/getdata/usti_pennyrondel/?timerange=1w&window=1d');
     response.then(res => res.json()).then(data => {
       const mappedData = data.data.map(item => ({
@@ -166,13 +168,13 @@ function App() {
       max = Math.max(...mappedData.map(item => item.aut));
       min = Math.min(...mappedData.map(item => item.aut));
       setDataG(mappedData);
-      setLoading(false);
+      setMiniLoading(false);
     });
   }
 
   function Show1M(){
     statText = "Statisky za posledních 30 dní";
-    setLoading(true);
+    setMiniLoading(true);
     const response = fetch('https://parkingapi.node.cloud.bagros.eu/getdata/usti_pennyrondel/?timerange=1m&window=1d');
     response.then(res => res.json()).then(data => {
       const mappedData = data.data.map(item => ({
@@ -182,7 +184,7 @@ function App() {
       max = Math.max(...mappedData.map(item => item.aut));
       min = Math.min(...mappedData.map(item => item.aut));
       setDataG(mappedData);
-      setLoading(false);
+      setMiniLoading(false);
     });
   }
 
@@ -211,7 +213,9 @@ function App() {
 
       <div className="RightContainer">
         <h1>{statText}</h1>
+        
         <ResponsiveContainer width={"100%"} height={vyska} className="Graf">
+        {miniLoading ? <div className="miniLoading"><FadeLoader color="#27beffcf"/></div>: 
           <LineChart data={dataG}>
           <Line type="monotone" dataKey="aut" stroke="#27beff" strokeWidth={3}/>
           <CartesianGrid strokeDasharray="3 3" />
@@ -221,7 +225,9 @@ function App() {
           />
           <Tooltip contentStyle={{backgroundColor: "black"}} itemStyle={{ color: "white" }} />
           </LineChart>
+                  }
         </ResponsiveContainer>
+
 
         <button onClick={Show5H}>Za 5 hodin</button>
 
