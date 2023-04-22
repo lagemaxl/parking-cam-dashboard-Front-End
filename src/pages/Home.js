@@ -156,14 +156,33 @@ function App() {
     });
   }
 
-  function Show1W(){ 
+  function Show1W(){
     statText = "Statisky za posledních 7 dní";
     setMiniLoading(true);
     const response = fetch('https://parkingapi.node.cloud.bagros.eu/getdata/usti_pennyrondel/?timerange=1w&window=1d');
     response.then(res => res.json()).then(data => {
       const mappedData = data.data.map(item => ({
-        name: parseInt(item.time.substring(8, 10)) + "." + item.time.substring(5, 7),
+        name: item.time.substring(0, 10),
         aut: item.full,
+      }));
+      const sum = mappedData.reduce((total, item) => total + item.aut, 0);
+      const average = sum / mappedData.length;
+      max = Math.max(...mappedData.map(item => item.aut));
+      min = Math.min(...mappedData.map(item => item.aut));
+      setDataG(mappedData);
+      setMiniLoading(false);
+      console.log("Průměr za týden: " + average);
+    });
+  }
+  
+  function Show1M(){
+    statText = "Statisky za posledních 30 dní";
+    setMiniLoading(true);
+    const response = fetch('https://parkingapi.node.cloud.bagros.eu/getdata/usti_pennyrondel/?timerange=1mo&window=1d');
+    response.then(res => res.json()).then(data => {
+      const mappedData = data.data.map(item => ({
+        name: parseInt(item.time.substring(8, 10)) + "." + item.time.substring(5, 7),
+        aut: data.data.reduce((sum, current) => sum + current.full, 0),
       }));
       max = Math.max(...mappedData.map(item => item.aut));
       min = Math.min(...mappedData.map(item => item.aut));
@@ -171,7 +190,10 @@ function App() {
       setMiniLoading(false);
     });
   }
+  
+  
 
+  /*
   function Show1M(){
     statText = "Statisky za posledních 30 dní";
     setMiniLoading(true);
@@ -179,7 +201,7 @@ function App() {
     response.then(res => res.json()).then(data => {
       const mappedData = data.data.map(item => ({
         name: parseInt(item.time.substring(8, 10)) + "." + item.time.substring(5, 7),
-        aut: item.full,
+        aut: data.data.reduce((sum, current) => sum + current.full, 0),
       }));
       max = Math.max(...mappedData.map(item => item.aut));
       min = Math.min(...mappedData.map(item => item.aut));
@@ -187,6 +209,11 @@ function App() {
       setMiniLoading(false);
     });
   }
+  */
+  
+  
+  
+  
 
   return (<>
   <Container maxWidth="xl">
@@ -227,7 +254,6 @@ function App() {
           </LineChart>
                   }
         </ResponsiveContainer>
-
 
         <button onClick={Show5H}>Za 5 hodin</button>
 
